@@ -1,0 +1,96 @@
+.navbar {
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: rgba(15, 15, 20, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 25px 12px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #b26ef1;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-icon svg{
+  width: 24px;
+  height: 24px;
+}
+
+.nav-link:hover {
+  color: #b696f1;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+}
+
+.nav-link.active {
+  color: #000;
+  background: #d2aee7;
+  box-shadow: 0 0 20px rgba(167, 109, 243, 0.3);
+}
+
+/* Tooltip (Etiqueta al pasar el mouse) */
+.nav-label {
+  position: absolute;
+  left: 60px;
+  background: #ad68ee;
+  color: #000;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-item:hover .nav-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsivo: Se mueve abajo en móviles */
+@media (max-width: 768px) {
+  .navbar {
+    left: 50%;
+    top: auto;
+    bottom: 20px;
+    transform: translateX(-50%);
+    padding: 8px 15px;
+  }
+  .nav-list {
+    flex-direction: row;
+  }
+  .nav-label {
+    display: none; /* Quitamos tooltips en móvil */
+  }
+}

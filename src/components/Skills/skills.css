@@ -1,0 +1,76 @@
+.skills-section {
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.section-title {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1100px; 
+  justify-content: center;
+}
+
+.skill-card {
+  background: rgba(128, 0, 128, 0.01); /* Fondo casi transparente */
+  border: 2px solid #8a2be2; /* Borde morado */
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  
+  /* Animación de ida y vuelta */
+  animation: float 4s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+/* Variar el retraso de la animación para que no se muevan todas igual */
+.skill-card:nth-child(2) { animation-delay: 1s; }
+.skill-card:nth-child(3) { animation-delay: 2s; }
+
+.card-subtitle {
+  color: #c084fc;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra los tags dentro de la tarjeta */
+  gap: 10px;
+}
+
+.skill-tag {
+  background: transparent;
+  border: 1px solid rgba(192, 132, 252, 0.5);
+  color: #e2e8f0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* Keyframes para la animación de ida y vuelta */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+  }
+  50% {
+    transform: translateY(-10px); /* Sube 10px */
+    box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4); /* Brilla más al subir */
+  }
+}

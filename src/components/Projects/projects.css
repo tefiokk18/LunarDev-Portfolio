@@ -1,0 +1,215 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.projects-section {
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  /* Animación de entrada inicial */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Clase que activa el Hook de Scroll */
+.projects-section.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  margin-bottom: 50px;
+  text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+/* --- GRID DE TARJETAS --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* EFECTO FLOTANTE */
+.project-card {
+  background: rgba(138, 43, 226, 0.04);
+  border: 2px solid #8a2be2;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  animation: float 6s ease-in-out infinite;
+}
+
+.project-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(138, 43, 226, 0.1);
+  box-shadow: 0 15px 45px rgba(138, 43, 226, 0.3);
+  animation-play-state: paused; /* Se detiene al pasar el mouse */
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* CONTENEDOR DE IMAGEN EN LA TARJETA */
+.project-image-container {
+  height: 230px;
+  overflow: hidden;
+  border-bottom: 2px solid #8a2be2;
+  background: #000;
+}
+
+.project-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Evita que la imagen se estire */
+}
+
+.project-info {
+  padding: 25px;
+  text-align: center;
+  color: #fff;
+}
+
+.project-info h3 {
+  color: #c084fc;
+  margin-bottom: 12px;
+  font-size: 1.6rem;
+}
+
+/* --- MODAL Y CARRUSEL --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: #0a0a0a;
+  padding: 30px;
+  border: 2px solid #8a2be2;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 900px;
+  position: relative;
+}
+
+.carousel-window {
+  width: 100%;
+  height: 500px;
+  overflow: hidden; /* Importante: oculta las fotos laterales */
+  border-radius: 15px;
+}
+
+.simple-carousel {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-img {
+  min-width: 100%;
+  height: 100%;
+  object-fit: contain; /* Para ver la captura completa de la web */
+}
+
+/* BOTONES DE NAVEGACIÓN */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #8a2be2;
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: #ff00ff;
+  box-shadow: 0 0 15px #ff00ff;
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+/* --- MEDIA QUERIES ESPECÍFICOS --- */
+
+@media (max-width: 768px) {
+  /* Títulos más pequeños para que no se corten */
+  .section-title {
+    font-size: 2rem !important;
+    text-align: center;
+  }
+
+  /* Grid: Una sola columna en móviles */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  /* Tarjetas: Menos flote para que no vibre raro en táctil */
+  .project-card {
+    animation: float-mobile 4s ease-in-out infinite !important;
+  }
+
+  @keyframes float-mobile {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* --- MODAL RESPONSIVE --- */
+  .modal-content {
+    width: 95% !important;
+    padding: 15px !important;
+    height: auto !important;
+  }
+
+  .carousel-window {
+    height: 250px !important; /* Altura más baja para que quepa todo */
+  }
+
+  /* Flechas más grandes y abajo para pulgares */
+  .nav-btn {
+    width: 45px !important;
+    height: 45px !important;
+    bottom: -60px !important; /* Sacamos las flechas de la imagen */
+    top: auto !important;
+    transform: none !important;
+  }
+
+  .prev-btn { left: 20% !important; }
+  .next-btn { right: 20% !important; }
+
+  .close-btn {
+    top: -45px !important;
+    right: 5px !important;
+  }
+}
