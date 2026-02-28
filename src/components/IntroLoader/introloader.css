@@ -23,8 +23,7 @@
   flex-direction: column;
   align-items: center;
 }
-
-/* Recuadro Animado (Se dibuja solo) */
+/* Recuadro animado, se dibuja solo */
 .neon-box {
   position: relative;
   padding: 50px 70px;
@@ -66,7 +65,7 @@
   animation: expandBeam 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards 1s;
 }
 
-/* Destellos aleatorios (Partículas) */
+/* Destellos aleatorios */
 .sparkle {
   position: absolute;
   width: 3px;
@@ -82,7 +81,6 @@
 .s2 { top: 80%; left: 80%; animation-delay: 1.5s; }
 .s3 { top: 40%; left: 10%; animation-delay: 2.5s; }
 
-/* --- KEYFRAMES PARA LA MAGIA --- */
 
 /* 1. Dibujar el recuadro */
 @keyframes drawBox {

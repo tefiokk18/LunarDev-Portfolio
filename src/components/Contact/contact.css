@@ -116,24 +116,38 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
 }
-
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  /* 1. Forzamos que el contenedor se apile verticalmente */
   .contact-container {
-    padding: 15px !important;
+    flex-direction: column !important; /* Formulario arriba, redes abajo */
+    gap: 40px !important;
   }
 
-  .contact-form h2 {
-    font-size: 1.8rem !important;
-  }
-
-  /* Los inputs deben ser 100% de ancho */
-  .input-group input, 
-  .input-group textarea {
+  /* 2. El formulario ocupa todo el ancho */
+  .contact-form {
     width: 100% !important;
-    font-size: 16px !important; /* Evita zoom molesto en iPhone */
+    min-width: unset !important;
+    order: 1; /* Asegura que vaya primero */
   }
 
-}.contact-section {
+  /* 3. Las redes sociales se ponen en fila horizontal abajo */
+  .social-sidebar {
+    flex-direction: row !important; /* De columna a fila */
+    justify-content: center !important;
+    width: 100% !important;
+    order: 2; /* Asegura que vaya después del formulario */
+    gap: 20px !important;
+  }
+
+  /* 4. Ajustamos el tamaño de los iconos para que quepan bien */
+  .social-icon {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 1.5rem !important;
+  }
+
+}
+.contact-section {
   padding: 120px 20px;
   margin-top: 50px;
   min-height: 100vh;

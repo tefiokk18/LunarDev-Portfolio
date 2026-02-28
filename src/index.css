@@ -2,26 +2,50 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: dark; /* Forzamos esquema oscuro para el estilo Kuromi */
-  background-color: #000000; /* Fondo negro puro */
+  color-scheme: dark;
+  background-color: #000000;
   color: white;
 }
 
-/* ELIMINAMOS el flex y el place-items del body */
-body {
+/* 1. RESET TOTAL DE SCROLL */
+* {
+  box-sizing: border-box;
   margin: 0;
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden; /* Evita la doble raya horizontal */
-  overflow-y: auto;   /* Permite el scroll vertical normal */
+  padding: 0;
+}
+/* FUERZA BRUTA PARA EL SCROLL */
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important; /* Bloqueamos el scroll del HTML */
 }
 
-/* Asegúrate de que el contenedor de React no bloquee nada */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  /* El body será el ÚNICO que tenga scroll */
+  overflow-y: auto !important; 
+  overflow-x: hidden !important; 
+  -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
+  position: fixed; /* Evita que el body se desplace solo */
+}
+
+#root {
+  width: 100% !important;
+  height: 100%;
+  overflow-x: hidden !important;
+}
+
 #root {
   width: 100%;
+  position: relative;
 }
 
-/* Tus animaciones están perfectas, déjalas así */
+/* 2. ANIMACIONES */
 .fade-in-section {
   opacity: 0;
   transform: translateY(40px);
@@ -34,38 +58,35 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-/* --- RESET RESPONSIVE --- */
-* {
-  box-sizing: border-box;
-}
 
-html, body {
-  overflow-x: hidden; /* Evita el scroll horizontal molesto */
-  width: 100%;
-}
-
-/* --- AJUSTE DEL MENÚ LATERAL (SIDEBAR) --- */
+/* 3. AJUSTE RESPONSIVE (Móvil) */
 @media (max-width: 768px) {
-  /* Si tu menú es el de los iconos en vertical, lo pasamos abajo */
+  /* Sidebar convertido en Navbar inferior */
   .sidebar-nav { 
+    position: fixed !important; /* IMPORTANTE: Debe ser fixed */
     flex-direction: row !important;
     width: 100% !important;
-    height: 60px !important;
+    height: 65px !important;
     bottom: 0 !important;
     top: auto !important;
     left: 0 !important;
+    z-index: 1000 !important;
     border-radius: 20px 20px 0 0 !important;
     border-right: none !important;
-    border-top: 1px solid #8a2be2 !important;
+    border-top: 2px solid #8a2be2 !important;
     padding: 10px !important;
     justify-content: space-around !important;
+    background: rgba(0, 0, 0, 0.8) !important;
     backdrop-filter: blur(10px);
   }
 
-  /* Ajustamos el contenido principal para que no lo tape el menú de abajo */
+  /* Ajustamos el contenido para que no "choque" con los bordes */
   main, section {
-    padding-bottom: 80px !important; 
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    width: 100% !important;
+    padding-bottom: 90px !important; /* Espacio para el navbar de abajo */
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    /* Forzamos que nada se salga del ancho del celular */
+    overflow-wrap: break-word;
   }
 }

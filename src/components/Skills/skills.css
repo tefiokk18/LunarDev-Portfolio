@@ -74,3 +74,27 @@
     box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4); /* Brilla más al subir */
   }
 }
+/* --- ESTILOS PARA CELULAR --- */
+@media (max-width: 768px) {
+  
+  .skills-section {
+    padding: 40px 15px; /* Reducimos padding lateral para ganar espacio */
+  }
+
+  .section-title {
+    font-size: 2rem; /* Título un poco más pequeño para que no rompa */
+  }
+
+  .skills-grid {
+    /* Forzamos UNA sola columna */
+    grid-template-columns: 1fr !important; 
+    gap: 30px; /* Un poco más de espacio entre tarjetas al estar verticales */
+    padding: 0 10px;
+  }
+
+  .skill-card {
+    width: 100%; /* Que ocupe todo el ancho disponible */
+    max-width: 340px; /* Para que no se vea gigante en tablets pequeñas */
+    margin: 0 auto; /* Centra la tarjeta si el contenedor es más ancho */
+  }
+}
