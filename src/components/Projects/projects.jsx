@@ -12,17 +12,17 @@ const Projects = () => {
   const projectsData = [
     {
       title: "TECHBLOG",
-      description: "Un espacio minimalista enfocado en la legibilidad y el diseño editorial moderno.",
+      description: "A minimalist space focused on readability and modern editorial design.",
       images: ["/1.png", "/3.png", "/4.png"]
     },
     {
       title: "NEBULA",
-      description: "Prototipo de interfaz cinemática para una plataforma de streaming inmersiva.",
+      description: "Prototype of a cinematic interface for an immersive streaming platform.",
       images: ["/6.png", "/7.png", "/8.png"]
     },
     {
       title: "GLAMOUR",
-      description: "Concepto de tienda premium de maquillaje con flujos de navegación elegantes.",
+      description: "Premium makeup store concept with elegant navigation flows.",
       images: ["/10.png", "/11.png", "/12.png"]
     }
   ];

@@ -56,7 +56,7 @@
   box-shadow: 0 0 20px rgba(167, 109, 243, 0.3);
 }
 
-/* Tooltip (Etiqueta al pasar el mouse) */
+
 .nav-label {
   position: absolute;
   left: 60px;
@@ -78,7 +78,7 @@
   transform: translateX(0);
 }
 
-/* Responsivo: Se mueve abajo en móviles */
+
 @media (max-width: 768px) {
   .navbar {
     left: 50%;
@@ -91,6 +91,56 @@
     flex-direction: row;
   }
   .nav-label {
-    display: none; /* Quitamos tooltips en móvil */
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important; 
+    bottom: 20px !important;
+    transform: translateX(-50%) !important;
+    flex-direction: row !important;
+    padding: 10px 20px !important;
+    border-radius: 30px !important;
+    width: auto !important;
+    min-width: 280px; 
+    z-index: 10001 !important; 
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .nav-list {
+    flex-direction: row !important; 
+    gap: 15px !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .nav-link {
+    width: 45px !important; 
+    height: 45px !important;
+  }
+
+  .nav-label {
+    display: none !important; 
+  }
+
+ 
+  .navbar {
+    animation: slideUpMobile 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+}
+
+@keyframes slideUpMobile {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 40px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }

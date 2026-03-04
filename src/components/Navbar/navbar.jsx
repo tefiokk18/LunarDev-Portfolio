@@ -6,29 +6,30 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-  const handleScroll = () => {
-    // Lista exacta de tus IDs
-    const sections = ['home', 'about', 'projects', 'skills', 'contact'];
     
-    sections.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        
-        // Si la parte superior de la sección está en el área visible (ajustado 150px de margen)
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          setActiveSection(id);
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', 
+    };
+
+    const handleIntersect = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
         }
-      }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+  
+    const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
-  };
 
-  window.addEventListener('scroll', handleScroll);
-  // Ejecutamos una vez al cargar por si ya estamos en medio de la página
-  handleScroll(); 
-
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    return () => observer.disconnect();
+  }, []); 
 
   const navItems = [
     { id: 'home', icon: <Home size={20} />, label: 'Home' },
@@ -39,14 +40,16 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="navbar">
+    <nav className="navbar sidebar-nav"> 
       <ul className="nav-list">
         {navItems.map((item) => (
           <li key={item.id} className="nav-item">
             <a
               href={`#${item.id}`}
               className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-              onClick={() => setActiveSection(item.id)} // Forzar estado al hacer click
+              onClick={(e) => {
+                setActiveSection(item.id);
+              }}
             >
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-label">{item.label}</span>

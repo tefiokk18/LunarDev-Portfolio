@@ -1,40 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import './introloader.css';
+import './IntroLoader.css';
 
-const IntroLoader = ({ onFinishedLoading }) => {
-  const [animateOut, setAnimateOut] = useState(false);
+const IntroLoader = ({ onFinished }) => {
+  const [stage, setStage] = useState('icon'); 
 
   useEffect(() => {
-    // 5 segundos de animación + 1 segundo de desvanecimiento
-    const timer = setTimeout(() => setAnimateOut(true), 5000);
-    const finishTimer = setTimeout(() => onFinishedLoading(), 6000);
+    const timerZoom = setTimeout(() => setStage('zoom'), 1500);
+
+    const timerLogo = setTimeout(() => setStage('logo'), 2300);
+
+    const timerExit = setTimeout(() => setStage('exit'), 4000);
+
+    const timerFinish = setTimeout(() => {
+      if (onFinished) onFinished();
+    }, 5500);
 
     return () => {
-      clearTimeout(timer);
-      clearTimeout(finishTimer);
+      clearTimeout(timerZoom);
+      clearTimeout(timerLogo);
+      clearTimeout(timerExit);
+      clearTimeout(timerFinish);
     };
-  }, [onFinishedLoading]);
+  }, [onFinished]);
 
   return (
-    <div className={`intro-loader ${animateOut ? 'fade-out' : ''}`}>
-      {/* Destellos de fondo */}
-      <div className="sparkle s1"></div>
-      <div className="sparkle s2"></div>
-      <div className="sparkle s3"></div>
-
-      <div className="loader-content">
-        <div className="neon-box">
-          <h1 className="welcome-text">
-            WELCOME <br /> <span>MY WORLD</span>
-          </h1>
-          {/* Esquinas decorativas */}
-          <div className="corner top-left"></div>
-          <div className="corner bottom-right"></div>
+    <div className={`intro-wrapper ${stage === 'exit' ? 'fade-out-all' : ''}`}>
+      {stage === 'icon' || stage === 'zoom' ? (
+    
+        <div className={`intro-icon-initial ${stage === 'zoom' ? 'zoom-out-fade' : ''}`}>
+          <div className="moon-initial">
+            <div className="star-initial">★</div>
+          </div>
         </div>
-        
-        {/* Línea de luz central */}
-        <div className="light-beam"></div>
-      </div>
+      ) : (
+       
+        <div className="logo-final">
+          <div className="lunar-icon">
+            <div className="moon">
+              <div className="star">★</div>
+            </div>
+          </div>
+          <h2 className="brand-name">LUNAR DEV</h2>
+        </div>
+      )}
     </div>
   );
 };
