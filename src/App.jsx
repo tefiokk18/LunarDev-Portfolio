@@ -6,7 +6,7 @@ import About from './components/About/about';
 import Skills from './components/Skills/skills';
 import Projects from './components/Projects/projects';
 import Contact from './components/Contact/contact';
-import IntroLoader from './components/IntroLoader/introloader'; 
+import IntroLoader from './components/introLoader/introloader'; 
 
 function App() {
   const [isLoading, setIsLoading] = useState(true); 
